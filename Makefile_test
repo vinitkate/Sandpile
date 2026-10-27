@@ -1,0 +1,18 @@
+CC = cc
+CFLAGS = -Wall -g
+
+TARGET = sandpile_test
+OBJS = sandpile_test.o
+
+all: $(TARGET)
+
+$(TARGET): $(OBJS)
+	$(CC) $(CFLAGS) -o $(TARGET) $(OBJS)
+
+sandpile_test.o: sandpile_test.c
+	$(CC) $(CFLAGS) -c sandpile_test.c
+
+.PHONY: all clean
+
+clean:
+	rm -f $(OBJS) $(TARGET)

@@ -1,0 +1,18 @@
+Processors 4, Problem size: 90
+Total time: 0.04564144500000000271 
+Total loops time: 0.03911928100000007513 
+Total loops: 11877 
+one loop time 0.00000329370051359772 
+-----------------------------------------------------------
+Processors 4, Problem size: 90
+Total time: 0.04730440200000000234 
+Total loops time: 0.04171095800000004100 
+Total loops: 11877 
+one loop time 0.00000351191024669530 
+-----------------------------------------------------------
+Processors 4, Problem size: 90
+Total time: 0.05487288800000000161 
+Total loops time: 0.04842755700000014873 
+Total loops: 14089 
+one loop time 0.00000343726006104054 
+-----------------------------------------------------------

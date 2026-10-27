@@ -1,0 +1,32 @@
+#!/bin/bash
+#SBATCH --job-name=sandpile_runs
+#SBATCH --time=00:30:00
+#SBATCH --output=sandpile_runs-%j.out
+#SBATCH --partition=standard
+#SBATCH --qos=standard
+##SBATCH --account=
+#SBATCH --nodes=3
+
+export OMP_NUM_THREADS=1
+
+# Arrays of cores and problem sizes (paired)
+cores=(299 312 350 367)
+sizes=(1397 1397 1397 1397)
+
+# Loop through the 4 combinations
+for i in {0..3}; do
+    core=${cores[$i]}
+    size=${sizes[$i]}
+    offset=$((size / 2))
+    echo "========================================="
+    echo "Running: ${core} cores, size ${size}, offsets ${offset}"
+    echo "========================================="
+    
+    # Run sandpile with srun
+    srun --ntasks=${core} --cpus-per-task=1 \
+         --unbuffered --distribution=block:block --hint=nomultithread \
+         ./sandpile ${size} ${offset} ${offset}
+    
+    echo ""
+done
+

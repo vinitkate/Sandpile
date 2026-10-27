@@ -1,0 +1,24 @@
+#!/bin/bash
+#SBATCH --job-name=sandpile_runs
+#SBATCH --time=01:00:00
+#SBATCH --output=sandpile_runs-%j.out
+#SBATCH --partition=standard
+#SBATCH --qos=standard
+##SBATCH --account=
+#SBATCH --nodes=1
+
+export OMP_NUM_THREADS=1
+
+core=128
+size=512
+offset=256
+echo "========================================="
+echo "Running: ${core} cores, size ${size}, offsets ${offset}"
+echo "========================================="
+    
+    # Run sandpile with srun
+srun --ntasks=${core} --cpus-per-task=1 \
+         --unbuffered --distribution=block:block --hint=nomultithread \
+         ./sandpile ${size} ${offset} ${offset}
+
+
